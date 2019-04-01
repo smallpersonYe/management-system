@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import withHoc from './hoc'
 // 受控组件
+@withHoc('登录')
 class Login extends Component {
 	state = {
 		username: '',
@@ -37,4 +38,5 @@ class Login extends Component {
 		)
 	}
 }
-export default withHoc('登录')(Login);
+// export default withHoc('登录')(Login);
+export default Login;

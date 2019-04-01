@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withHoc from './hoc'
-
+@withHoc('注册')
 // 受控组件
 class Register extends Component {
 	state = {
@@ -44,4 +44,4 @@ class Register extends Component {
 		)
 	}
 }
-export default withHoc('注册')(Register);
+export default Register;
