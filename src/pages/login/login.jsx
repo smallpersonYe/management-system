@@ -2,7 +2,9 @@
 用户登陆的路由组件
  */
 import React, {Component} from 'react'
-import {Form, Icon, Input, Button } from 'antd';
+import {Form, Icon, Input, Button, message } from 'antd';
+import {reqLogin} from '../../api/index';
+import {setItem} from "../../utils/storage-utils";
 import logo from './logo.png';
 import './index.less'
 
@@ -11,10 +13,19 @@ const Item = Form.Item;
 class Login extends Component {
 	login = (e) => {
 		e.preventDefault();
-		this.props.form.validateFields((err, values) => {
+		this.props.form.validateFields(async (err, values) => {
 			if (!err) {
-				console.log('Received values of form: ', values);
-				alert('假装提交成功')
+				const {username, password} = values;
+				const result = await reqLogin(username, password);
+				// 判断是否登录成功
+				if (result.status === 0) {
+					message.success('登录成功',1);
+					//保存用户数据
+					setItem(result.data);
+					this.props.history.replace('/')
+				} else {
+					message.error(result.msg,2)
+				}
 			} else {
 				console.log('表单失败',err);
 			}
@@ -49,7 +60,7 @@ class Login extends Component {
 					<h2>用户登录</h2>
 					<Form onSubmit={this.login} className="login-form">
 						<Item>
-							{getFieldDecorator('userName', {
+							{getFieldDecorator('username', {
 								rules: [
 									/*
 									{ required: true, whitespace: true, message: '必须输入用户名' },
@@ -64,7 +75,7 @@ class Login extends Component {
 							)}
 						</Item>
 						<Item>
-							{getFieldDecorator('passWord',{
+							{getFieldDecorator('password',{
 								rules: [
 									// 自定义表单校验规则
 									{validator: this.validator('密码')}
@@ -74,7 +85,7 @@ class Login extends Component {
 							)}
 						</Item>
 						<Item>
-							<Button type="primary" htmlType="submit" className="login-form-button">登录</Button>
+							<Button type="danger" htmlType="submit" className="login-form-button">登录</Button>
 						</Item>
 					</Form>
 				</section>
