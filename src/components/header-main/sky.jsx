@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import dayjs from "dayjs";
-import {reqWeather} from "../../../api";
+import {reqWeather} from "../../api";
 
 
 export default class Sky extends Component {
@@ -17,7 +17,7 @@ export default class Sky extends Component {
 			})
 		},1000);
 		//请求天气数据
-		reqWeather('漠河')
+		reqWeather('深圳')
 			.then(res => {
 				this.setState({
 					weatherImg: res.weatherImg,

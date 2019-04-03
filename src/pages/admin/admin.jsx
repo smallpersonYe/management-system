@@ -45,7 +45,7 @@ export default class Admin extends Component {
 	};
 
 	onCollapse = (collapsed) => {
-		console.log(collapsed);
+		// console.log(collapsed);
 		this.setState({ collapsed });
 	};
 
@@ -66,7 +66,7 @@ export default class Admin extends Component {
 						<HeaderMain/>
 					</Header>
 					<Content style={{ margin: '20px 16px 0' }}>
-						<div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+						<div style={{ padding: 24, background: '#fff', minHeight: '100%' , position: 'relative'}}>
 							<Switch>
 								<Route path="/home" component={Home}/>
 								<Route path="/category" component={Category}/>
@@ -76,7 +76,7 @@ export default class Admin extends Component {
 								<Route path="/charts/bar" component={Bar}/>
 								<Route path="/charts/line" component={Line}/>
 								<Route path="/charts/pie" component={Pie}/>
-								<Redirect to="/home"/>
+								<Redirect to="/login"/>
 							</Switch>
 						</div>
 					</Content>

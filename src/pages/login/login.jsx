@@ -22,7 +22,7 @@ class Login extends Component {
 					message.success('登录成功',1);
 					//保存用户数据
 					setItem(result.data);
-					this.props.history.replace('/')
+					this.props.history.replace('/home')
 				} else {
 					message.error(result.msg,2)
 				}

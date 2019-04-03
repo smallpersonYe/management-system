@@ -8,7 +8,7 @@ import memory from '../../utils/memory-utils';
 import menuList from '../../config/menu-config'
 
 import './header-main.less';
-import Sky from './sky'
+import Sky from './sky.jsx';
 
 /*
 头部组件
@@ -26,7 +26,7 @@ class HeaderMain extends Component {
 				this.props.history.replace('/login');
 			},
 			okText: '退出',
-			cancelText: '没事,点错了'
+			cancelText: '点错了'
 		})
 	};
 
@@ -47,7 +47,6 @@ class HeaderMain extends Component {
 				}
 			} else {
 				if (pathname === menuList[i].key) {
-					console.log('1111');
 					return menuList[i].title;
 				}
 			}
