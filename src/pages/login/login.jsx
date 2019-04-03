@@ -5,7 +5,7 @@ import React, {Component} from 'react'
 import {Form, Icon, Input, Button, message } from 'antd';
 import {reqLogin} from '../../api/index';
 import {setItem} from "../../utils/storage-utils";
-import logo from './logo.png';
+import logo from '../../assets/img/logo.png';
 import './index.less'
 
 const Item = Form.Item;
