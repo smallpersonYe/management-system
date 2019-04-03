@@ -2,15 +2,15 @@
 后台管理主路由组件
  */
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import {
 	Layout
 } from 'antd';
 
 import {getItem} from "../../utils/storage-utils";
-import memory from '../../utils/memory-utils'
-import LeftNav from '../../components/left-nav/left-nav.jsx'
-
+import memory from '../../utils/memory-utils';
+import LeftNav from '../../components/left-nav/left-nav.jsx';
+import HeaderMain from '../../components/header-main/header-main.jsx';
 import Home from '../home/home';
 import Category from '../category/category';
 import Product from '../product/product';
@@ -62,17 +62,22 @@ export default class Admin extends Component {
 					<LeftNav opacity={opacity}/>
 				</Sider>
 				<Layout>
-					<Header style={{ background: '#fff', padding: 0 }} />
-					<Content style={{ margin: '10px 16px 0' }}>
+					<Header style={{ background: '#fff', padding: 0,height: 100 }}>
+						<HeaderMain/>
+					</Header>
+					<Content style={{ margin: '20px 16px 0' }}>
 						<div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-							<Route path="/home" component={Home}/>
-							<Route path="/category" component={Category}/>
-							<Route path="/product" component={Product}/>
-							<Route path="/user" component={User}/>
-							<Route path="/role" component={Role}/>
-							<Route path="/charts/bar" component={Bar}/>
-							<Route path="/charts/line" component={Line}/>
-							<Route path="/charts/pie" component={Pie}/>
+							<Switch>
+								<Route path="/home" component={Home}/>
+								<Route path="/category" component={Category}/>
+								<Route path="/product" component={Product}/>
+								<Route path="/user" component={User}/>
+								<Route path="/role" component={Role}/>
+								<Route path="/charts/bar" component={Bar}/>
+								<Route path="/charts/line" component={Line}/>
+								<Route path="/charts/pie" component={Pie}/>
+								<Redirect to="/home"/>
+							</Switch>
 						</div>
 					</Content>
 					<Footer style={{ textAlign: 'center' }}>
